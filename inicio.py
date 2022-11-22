@@ -29,7 +29,7 @@ def insertar():
 
 @app.route('/crud')
 def crud():
-    conn = pymysql.connect(host='localhost', user='root', passwd='', db='solicitud_registro')
+    conn = pymysql.connect('MAZC.mysql.pythonanywhere-services.com', user='MAZC', passwd='ASERTIJOL', db='MAZC$default')
     cursor = conn.cursor()
     cursor.execute('select id, Nombre, Correo, Telefono, Direccion, Ocacion from usuarios order by id')
     datos = cursor.fetchall()
@@ -43,7 +43,7 @@ def agrega_comenta():
         aux_Telefono = request.form['Telefono']
         aux_Direccion = request.form['Direccion']
         aux_Ocacion = request.form['Ocacion']
-        conn = pymysql.connect(host='localhost', user='root', passwd='', db='solicitud_registro')
+        conn = pymysql.connect('MAZC.mysql.pythonanywhere-services.com', user='MAZC', passwd='ASERTIJOL', db='MAZC$default')
         cursor = conn.cursor()
         cursor.execute('insert into usuarios (Nombre,Correo,Telefono,Direccion,Ocacion) values (%s, %s, %s, %s, %s)',(aux_Nombre, aux_Correo, aux_Telefono, aux_Direccion, aux_Ocacion))
         conn.commit()
@@ -51,7 +51,7 @@ def agrega_comenta():
 
 @app.route('/editar/<string:id>')
 def editar(id):
-    conn = pymysql.connect(host='localhost', user='root', passwd='', db='solicitud_registro')
+    conn = pymysql.connect('MAZC.mysql.pythonanywhere-services.com', user='MAZC', passwd='ASERTIJOL', db='MAZC$default')
     cursor = conn.cursor()
     cursor.execute('select id, Nombre, Correo, Telefono, Direccion, Ocacion from usuarios where id = %s', (id))
     dato  = cursor.fetchall()
@@ -65,7 +65,7 @@ def editar_comenta(id):
         aux_Telefono = request.form['Telefono']
         aux_Direccion = request.form['Direccion']
         aux_Ocacion = request.form['Ocacion']
-        conn = pymysql.connect(host='localhost', user='root', passwd='', db='solicitud_registro')
+        conn = pymysql.connect('MAZC.mysql.pythonanywhere-services.com', user='MAZC', passwd='ASERTIJOL', db='MAZC$default')
         cursor = conn.cursor()
         cursor.execute('UPDATE usuarios set Nombre=%s, Correo=%s, Telefono=%s, Direccion=%s, Ocacion=%s where id=%s', (aux_Nombre, aux_Correo, aux_Telefono, aux_Direccion, aux_Ocacion,id))
         conn.commit()
@@ -73,7 +73,7 @@ def editar_comenta(id):
 
 @app.route('/borrar/<string:id>')
 def borrar(id):
-    conn = pymysql.connect(host='localhost', user='root', passwd='', db='solicitud_registro')
+    conn = pymysql.connect('MAZC.mysql.pythonanywhere-services.com', user='MAZC', passwd='ASERTIJOL', db='MAZC$default')
     cursor = conn.cursor()
     cursor.execute('delete from usuarios where id = {0}'.format(id))
     conn.commit()
